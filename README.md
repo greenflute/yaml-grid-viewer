@@ -1,5 +1,5 @@
 # yaml-grid-viewer
-Inspired from dutchigor:json-grid-viewer, this extension allows you get a better overview of the content in a YAML file by showing it in a resizable grid.
+Inspired and cloned from dutchigor:json-grid-viewer, this extension allows you get a better overview of the content in a YAML file by showing it in a resizable grid.
 - Columns are resizable.
 - Each object and array is collapsed by default but can be expanded to see all contents
 - Arrays of objects show in a table format
