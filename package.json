@@ -1,0 +1,82 @@
+{
+	"name": "yaml-viewer",
+	"publisher": "greenflute",
+	"displayName": "YAML Grid Viewer",
+	"description": "Get a better overview of the content in a YAML file by viewing it in an resizable grid.",
+	"icon": "icon.png",
+	"galleryBanner": {
+		"color": "#d4e1ef",
+		"theme": "light"
+	},
+	"version": "0.1.0",
+	"repository": "github:greenflute/yaml-grid-viewer",
+	"engines": {
+		"node": "16.x",
+		"vscode": "^1.46.0"
+	},
+	"categories": [
+		"Visualization"
+	],
+	"keywords": [
+		"yaml",
+		"drilldown",
+		"hierarchy",
+		"grid",
+		"overview"
+	],
+	"qna": "https://github.com/greenflute/yaml-grid-viewer/discussions",
+	"main": "./editor/main.js",
+	"activationEvents": [
+		"onCustomEditor:yamlGridViewer.yaml"
+	],
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "yamlGridViewer.yaml",
+				"displayName": "YAML Grid",
+				"selector": [
+					{
+						"filenamePattern": "*.yaml"
+					}
+				],
+				"priority": "option"
+			}
+		]
+	},
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"vscode:prepublish": "npm run build"
+	},
+	"dependencies": {
+		"core-js": "^3.18.0",
+		"yaml": "^2.3.1",
+		"vue": "^3.2.13"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.46.0",
+		"@vue/cli-plugin-babel": "~4.5.13",
+		"@vue/cli-plugin-eslint": "~4.5.13",
+		"@vue/cli-service": "~4.5.13",
+		"@vue/compiler-sfc": "^3.2.13",
+		"babel-eslint": "^10.1.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-vue": "^7.0.0-0"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/vue3-essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint"
+		},
+		"rules": {}
+	},
+	"license": "SEE LICENSE IN LICENSE"
+}
