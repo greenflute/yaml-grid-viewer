@@ -8,7 +8,7 @@
 		"color": "#d4e1ef",
 		"theme": "light"
 	},
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"repository": "github:greenflute/yaml-grid-viewer",
 	"engines": {
 		"node": "16.x",

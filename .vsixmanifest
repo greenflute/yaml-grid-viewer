@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Language="en-US" Id="yaml-viewer" Version="0.1.0" Publisher="greenflute"  />
+    <Identity Language="en-US" Id="yaml-viewer" Version="0.1.1" Publisher="greenflute"  />
     <DisplayName>YAML Grid Viewer</DisplayName>
     <Description xml:space="preserve">Get a better overview of the content in a YAML file by viewing it in an resizable grid.</Description>
     <Tags>yaml,drilldown,hierarchy,grid,overview</Tags>
