@@ -37,6 +37,9 @@
 				"selector": [
 					{
 						"filenamePattern": "*.yaml"
+					},
+					{
+						"filenamePattern": "*.yml"
 					}
 				],
 				"priority": "option"
