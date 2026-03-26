@@ -20,10 +20,13 @@ body {
   font-family: var(--vscode-editor-font-family);
   font-weight: var(--vscode-editor-font-weight);
   font-size: var(--vscode-editor-font-size);
+  color: var(--vscode-editor-foreground);
 }
 table {
   margin: 2px 0;
   border-collapse: collapse;
+  table-layout: fixed;
+  max-width: 100%;
 }
 td, th {
   padding: 2px 4px;
@@ -31,9 +34,16 @@ td, th {
 }
 td.member, th.key, td.element, td.value {
   border: 1px solid var(--vscode-editor-foreground);
+  overflow-wrap: anywhere;
 }
 .index, .collapsed {
   white-space: nowrap;
+}
+.collapsed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
 }
 .index::after {
   margin-left: .2em;
@@ -43,6 +53,8 @@ td.index::after, .badge {
   display: inline-block;
   border-radius: 0.5em;
   color: 	var(--vscode-editor-background);
+  line-height: 1.2;
+  vertical-align: middle;
 }
 td.index.object::after {
   content: 'Obj';
@@ -88,14 +100,194 @@ td.index.null::after {
 .array-el:not(.object) .value {
   width: 100%;
 }
-.expand {
-  display: inline-block;
-  text-align: center;
-  width: 1em;
+.cell-action {
   margin-left: 4px;
-  cursor: pointer;
-  border: 1px solid;
+  border: 1px solid var(--vscode-editorWidget-border, var(--vscode-editor-foreground));
+  background: var(--vscode-button-secondaryBackground, transparent);
+  color: var(--vscode-button-secondaryForeground, var(--vscode-editor-foreground));
   border-radius: 3px;
+  cursor: pointer;
+  font: inherit;
+}
+.subtle-action {
+  opacity: 0.8;
+}
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+.toggle-button {
+  margin-left: 0;
+  border-radius: 50%;
+}
+.toggle-button:hover,
+.hover-edit-button:hover {
+  background: var(--vscode-toolbar-hoverBackground, rgba(127, 127, 127, 0.15));
+}
+.icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.value-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+.hover-edit-anchor {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.2rem;
+  min-width: 0;
+  gap: 4px;
+  max-width: 100%;
+}
+.hover-edit-button {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  width: 0;
+  overflow: hidden;
+  transition: opacity 120ms ease, width 120ms ease;
+}
+.hover-edit-anchor:hover .hover-edit-button,
+.hover-edit-anchor:focus-within .hover-edit-button,
+.hover-edit-anchor.editing .hover-edit-button {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  width: 1.2rem;
+}
+.key-inline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+.inline-editor {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.inline-editor.multiline {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: min(42rem, calc(100vw - 3rem));
+  max-width: 100%;
+}
+.editor-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.editor-actions.multiline {
+  width: 100%;
+}
+.yaml-input {
+  font: inherit;
+  color: inherit;
+  background: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border, var(--vscode-editor-foreground));
+}
+.yaml-input {
+  min-width: 0;
+  width: min(20rem, 100%);
+}
+.yaml-textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border, var(--vscode-editor-foreground));
+  min-width: 0;
+  width: 100%;
+  min-height: 5.5rem;
+  resize: vertical;
+}
+.textarea-overlay {
+  position: relative;
+  display: block;
+  width: min(42rem, calc(100vw - 3rem));
+  max-width: 100%;
+  min-width: 0;
+  background: var(--vscode-input-background);
+  border: 1px solid var(--vscode-input-border, var(--vscode-panel-border, var(--vscode-editor-foreground)));
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px transparent;
+  z-index: 1;
+}
+.yaml-textarea-preview,
+.yaml-textarea-overlay {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 7px 9px;
+  font: inherit;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: auto;
+  min-height: 5.5rem;
+  width: 100%;
+}
+.yaml-textarea-preview {
+  color: inherit;
+  pointer-events: none;
+}
+.preview-line {
+  display: block;
+  position: relative;
+  min-height: 1.5em;
+}
+.yaml-textarea-overlay {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  caret-color: var(--vscode-editor-foreground);
+  background: transparent;
+  border: 0;
+  resize: vertical;
+  outline: 0;
+}
+.yaml-textarea-overlay::selection {
+  background: var(--vscode-editor-selectionBackground);
+}
+.textarea-overlay:focus-within {
+  border-color: var(--vscode-focusBorder, var(--vscode-inputOption-activeBorder, var(--vscode-input-border)));
+  box-shadow: inset 0 0 0 1px var(--vscode-focusBorder, var(--vscode-inputOption-activeBorder, transparent));
+}
+.hard-break-marker {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--vscode-descriptionForeground, var(--vscode-editorLineNumber-foreground));
+  font-size: 0.9em;
+  letter-spacing: -0.02em;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.key-input {
+  width: min(14rem, 100%);
 }
 th.member {
   border: 1px solid var(--vscode-editor-foreground);
@@ -121,4 +313,7 @@ th.object.key, td.object.element {
 tr.object-hdr th {
   padding: 0;
   border: 0;
+}
+.list-mode td.value {
+  width: auto;
 }

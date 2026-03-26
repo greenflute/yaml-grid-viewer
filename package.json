@@ -8,7 +8,7 @@
 		"color": "#d4e1ef",
 		"theme": "light"
 	},
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"repository": "github:greenflute/yaml-grid-viewer",
 	"engines": {
 		"node": "16.x",
@@ -48,14 +48,12 @@
 	},
 	"scripts": {
 		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
+		"build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
 		"lint": "vue-cli-service lint",
 		"vscode:prepublish": "npm run build"
 	},
 	"dependencies": {
-		"core-js": "^3.18.0",
-		"yaml": "^2.3.1",
-		"vue": "^3.2.13"
+		"yaml": "^2.3.1"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.46.0",
@@ -64,8 +62,10 @@
 		"@vue/cli-service": "~4.5.13",
 		"@vue/compiler-sfc": "^3.2.13",
 		"babel-eslint": "^10.1.0",
+		"core-js": "^3.18.0",
 		"eslint": "^6.8.0",
-		"eslint-plugin-vue": "^7.0.0-0"
+		"eslint-plugin-vue": "^7.0.0-0",
+		"vue": "^3.2.13"
 	},
 	"eslintConfig": {
 		"root": true,

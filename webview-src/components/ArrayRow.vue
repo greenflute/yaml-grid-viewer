@@ -3,11 +3,11 @@
     <td :class="[ 'index', typeOfEl ]">{{ index }}</td>
     <template v-if="typeOfEl == 'object'">
       <td v-for="{ header } in columns" :key="header" class="member">
-        <cell :element="element[header]" />
+        <cell :element="element[header]" :path="childPath( header )" />
       </td>
     </template>
     <td v-else class="value" :colspan="columns.length">
-      <cell :element="element" />
+      <cell :element="element" :path="path" />
     </td>
   </tr>
 </template>
@@ -17,13 +17,19 @@ export default {
   props: [
     'element',
     'index',
-    'columns'
+    'columns',
+    'path'
   ],
   computed: {
     typeOfEl() {
       return Array.isArray( this.element ) ? 'array' :
         this.element === null ? 'null' :
         typeof this.element
+    }
+  },
+  methods: {
+    childPath(header) {
+      return [ ...this.path, header ]
     }
   }
   
