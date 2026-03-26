@@ -35,6 +35,12 @@ jobs:
       - name: Install VSCE
         run: npm install --global @vscode/vsce
 
+      - name: Show tool versions
+        run: |
+          node -v
+          npm -v
+          vsce --version
+
       - name: Package VSIX
         run: |
           VERSION="$(node -p "require('./package.json').version")"
