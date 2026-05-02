@@ -1,4 +1,5 @@
 **[DEPRECATED]** Please use https://github.com/greenflute/tiny-grid-viewer
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 # yaml-grid-viewer
 Inspired and cloned from dutchigor:json-grid-viewer, this extension allows you get a better overview of the content in a YAML file by showing it in a resizable grid.
